@@ -27,8 +27,11 @@ public class CustomersService {
     }
 
     public Customers createCustomer(Customers customers) {
-
-        return customersRepository.save(customers);
+        try {
+            return customersRepository.save(customers);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 //    public Customers updateCustomerById(Long id, Customers customers) {
@@ -66,6 +69,11 @@ public class CustomersService {
     }
 
     public void deleteCustomer(Long id) {
-        customersRepository.deleteById(id);
+        try {
+            customersRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
